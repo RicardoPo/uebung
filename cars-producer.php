@@ -238,5 +238,4 @@
 	echo "doing?: ".$pd->pCar->getCondition()."<br>";
 	echo "kmh: ".$pd->pCar->getKmh()."<br><br>";
 	echo "Braking Distance: ".$pd->pCar->getBreakdis()."m<br>";
-
 ?>
