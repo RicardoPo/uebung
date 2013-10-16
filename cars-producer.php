@@ -1,241 +1,247 @@
 <?
-	class cProducer {
+	class Producer 
+	{	
+		private $company = "Ford";
+		private $adress = "USA";
+		public $Pcar;
 		
-		private $Company = "Nichts";
-		private $Adress = "Nirgends";
-		public $pCar;
 		
-		
-		public function newProd($pBez,$pAdress) {
-			$this->pCar = new cCar();
-			
-			$this->Company = $pBez;
-			$this->Adress = $pAdress;
-
+		public function newProd($comp,$adrs) 
+		{
+			$this->company = $comp;
+			$this->adress = $adrs;
+			$this->Pcar = new Car();
 		}
 		
-		public function getCompany() {
-			
-			return $this->Company;
+		public function getCompany() 
+		{	
+			return $this->company;
 		}
 		
-		public function getAdress() {
-			
-			return $this->Adress;
-		}
-		
+		public function getAdress()
+		{	
+			return $this->adress;
+		}	
 	}
 	
-		class cCar {
+	class Car 
+	{
 		
-		private $type = "not defined";
-		private $Colour = "not defined";
-		private $Seats = 0;
+		private $type = "Fiesta";
+		private $color = "orange-purpel";
+		private $seats = 1;
+/**
+* 	Is there a Radio and is it on?
+*/		
+		private $radio = "no";
+		private $radio_on = "off";
 		
-		private $Radio = "not defined";
-		private $Radioon = "not defined";
+		private $aircon = "no";
+		private $aircon_on = "off";
 		
-		private $Aircon = "not defined";
-		private $Airconon = "not defined";
+		private $abs = "no";
+		private $abs_on = "off";
 		
-		private $ABS = "nothing";
-		private $ABSon = "nothing";
+		private $centrallock = "no";
+		private $centrallock_on = "off"; 
+/**
+* 	What is the car doing and how fast is it? stands/drives/brakes 
+*/
+		private $condition = "drives";
+		private $kmh = 290;
+/**
+*  	brakdis (Braking distance) means the way, which is needed until the car stopps.
+*/
+		private $brakdis = 23;
 		
-		private $Centrallock = "not defined";
-		private $Centrallockon = "not defined"; 
-		
-		private $Condition = "nothing";
-		private $Kmh = 1999999;
-		
-		private $Breakdis = 1999999;
-		
-		
-	  	public $Producer;
-
-		public function newCar($ptype,$pColour,$pSeats,$pABS,$pradio,$plock,$pair) {
-         	$this->Producer= new cProducer();
-			$this->type = $ptype;
-			$this->Colour = $pColour;
-			$this->Seats = $pSeats;		
-			$this->ABS = $pABS;
-			$this->Radio = $pradio;
-			$this->Centrallock = $plock;
-			
-			$this->Aircon = $pair;
+		public function newCar($typ,$col,$ses,$as,$rad,$loc,$air,$con) 
+		{
+   			$this->type = $typ;
+			$this->color = $col;
+			$this->seats = $ses;		
+			$this->abs = $as;
+			$this->radio = $rad;
+			$this->centrallock = $loc;
+			$this->aircon = $air;
+			$this->condition = $con;
 		} 
 
-		public function gettype () {
+		public function getType () 
+		{
 			return $this->type;
 		}
 
-		public function getColour() {
-			return $this->Colour;
+		public function getColor() 
+		{
+			return $this->color;
 		}
 	
-		public function getSeats() {
-			return $this->Seats;
+		public function getSeats() 
+		{
+			return $this->seats;
 		}
 		
-		
-		public function getRadio() {
-			return $this->Radio;
+		public function getRadio() 
+		{
+			return $this->radio;
 		}
 
-		public function getRadioon() {
-			
-			return $this->Radioon;
+		public function getRadio_on() 
+		{	
+			return $this->radio_on;
 		}
 		
-		public function getAircon() {
-			return $this->Aircon;
+		public function getAircon() 
+		{
+			return $this->aircon;
 		}
 		
-		public function getAirconon() {
-			return $this->Airconon;
+		public function getAircon_on() 
+		{
+			return $this->aircon_on;
 		}
 		
-		public function getCentrallock() {
-			return $this->Centrallock;
+		public function getCentrallock() 
+		{
+			return $this->centrallock;
 		}
 		
-		public function getCentrallockon() {
-			return $this->Centrallockon;
+		public function getCentrallock_on() 
+		{
+			return $this->centrallock_on;
 		}
 		
-		public function getABS() {
-			return $this->ABS;
+		public function getAbs() 
+		{
+			return $this->abs;
 		}
-	
-
-			
-		public function Lock_on($pAktivieren) {
-			
-			if ($this->Centrallock=="yes") {
-				if ($pAktivieren=="on") {	
-					$this->Centrallockon="on";
+		
+/**
+*	If centrallock_on is on, all other electronic devices have to be off 
+*/		
+		
+		public function setCentrallock_on($loc_activate) 
+		{	
+			if ($this->centrallock=="yes") {
+				if ($loc_activate=="on") {	
+					$this->centrallock_on="on";
 				} else {
-						$this->Centrallockon="off";
+						$this->centrallock_on="off";
 				}
 			} else {
-				$this->Centrallockon="not installed";
+				$this->centrallock_on="not installed";
 			}
 		}
 		
-		public function Radioon_on($sRadioon) {
-	
-			if ($this->Radio=="yes") {
-				if ($sRadioon=="on") {
-					if ($this->Centrallockon=="off"){		
-					$this->Radioon="on";
-					}elseif($this->Centrallockon=="not installed") {
-						$this->Radioon="on";
-					}else {
-						$this->Radioon="off";
+		public function setRadio_on($rad_activate) 
+		{
+			if ($this->radio=="yes") {
+				if ($rad_activate=="on") {
+					if ($this->centrallock_on=="off"){		
+						$this->radio_on="on";
+					} elseif($this->centrallock_on=="not installed") {
+						$this->radio_on="on";
+					} else {
+						$this->radio_on="off";
 					}
 				}else {
-					$this->Radioon="off";
+					$this->radio_on="off";
 				}
 			} else {
-				$this->Radioon="not installed";
+				$this->radio_on="not installed";
 			}	
 		}
 		
-		public function Aircon_on($pAirconon){
-			if ($this->Aircon == "yes") {
-				if($pAirconon=="on") {
-					if ($this->Centrallockon=="off") {
-					$this->Airconon="on";
-					}elseif($this->Centrallockon=="not installed") {
-						$this->Airconon = "on";
-					}else {
-						$this->Airconon = "off";
+		public function setAircon_on($air_activate)
+		{
+			if ($this->aircon=="yes") {
+				if($air_activate=="on") {
+					if ($this->centrallock_on=="off") {
+						$this->Aircon_on="on";
+					} elseif ($this->centrallock_on=="not installed") {
+						$this->aircon_on = "on";
+					} else {
+						$this->aircon_on = "off";
 					}
 				} else {
-					$this->Airconon = "off";
+					$this->aircon_on = "off";
 				}
-				
 			} else {
-				$this->Airconon = "not installed";
+				$this->aircon_on = "not installed";
 			}
 		}
-		
-		public function changeCondition($con) {
-			$this->Condition = $con;
-		}
-		
-		public function changeKmh($cKmh) {
-				if ($this->Condition=="stands") {
-					$this->Kmh = 0; 
-					
-					$this->Breakdis = $this->Kmh;
-				}elseif ($this->Condition=="drives") {
-					$this->Kmh = $cKmh;
-					
-					if($this->ABS=="yes") {
-						$this->Breakdis = $cKmh * 0.7;
+	
+		public function setKmh($kh) 
+		{
+				if ($this->condition=="stands") {
+					$this->kmh = 0; 
+					$this->Brakdis = 0;
+				} elseif ($this->condition=="drives") {
+					$this->kmh = $kh;
+					if($this->abs=="yes") {
+						$this->brakdis = $kh * 0.7;
 					} else {
-						$this->Breakdis = $cKmh;
+						$this->brakdis = $kh;
 					}
 					
-				}else{
-					$this->Kmh = $cKmh*0.9;
+				} else{
+					$this->kmh = $kh*0.9;
 					
-					if ($this->ABS=="yes") {
-						$this->Breakdis = $this->Kmh*0.9;
+					if ($this->abs=="yes") {
+						$this->brakdis = $this->kmh*0.9;
 					}else {
-						$this->Breakdis = $this->Kmh;
+						$this->Brakdis = $this->kmh;
 					}	
 				}
 		}
 		
 		public function getCondition() {
-			return $this->Condition;
+			return $this->condition;
 		}
 		
 		public function getkmh() {
-			return $this->Kmh;
+			return $this->kmh;
 		}
 		
-		public function getBreakdis(){
-			return $this->Breakdis;
+		public function getBrakdis(){
+			return $this->brakdis;
 		}
 	}	
 	
 	echo "<h2>Producer</h2>";
-	$pd = new cProducer();
-	$pd->newProd("Fiat","Paris");
+	$pd = new Producer();
+	$pd->newProd("Fiat","Paris","Brava","green");
 	
 	echo "Company: ".$pd->getCompany()."<br>";
 	echo "Adress: ".$pd->getAdress()."<br>";
 	
 	echo "<h4>produced Car</h4>";
+/**
+*	Settings: type, color, seats, abs, radio, lock, aircon, condition (stands/drives/brakes)
+*/
+	$pd->Pcar->newCar("Brava","green",5,"yes","yes","yes","yes","brakes");
 	
-	$pd->pCar->newCar("Brava","Green",5,"yes","no","yes","yes");
+	echo "Carname: ".$pd->Pcar->gettype()."<br>";
+	echo "Color: ".$pd->Pcar->getcolor()."<br>";
+	echo "Seats: ".$pd->Pcar->getSeats()."<br>";
 	
-	echo "Carname: ".$pd->pCar->gettype()."<br>";
-	echo "Colour: ".$pd->pCar->getcolour()."<br>";
-	echo "Seats: ".$pd->pCar->getSeats()."<br>";
+	echo "Radio: ".$pd->Pcar->getRadio()."<br>";
+	echo "ABS: ".$pd->Pcar->getABS()."<br>";
+	echo "Centrallock: ".$pd->Pcar->getCentrallock()."<br>";
+	echo "Aircondition: ".$pd->Pcar->getAircon()."<br><br>";
 	
-	echo "Radio: ".$pd->pCar->getRadio()."<br>";
-	echo "ABS: ".$pd->pCar->getABS()."<br>";
-	echo "Centrallock: ".$pd->pCar->getCentrallock()."<br>";
-	echo "Aircondition: ".$pd->pCar->getAircon()."<br><br>";
-	
-	$pd->pCar->Lock_on("off");
-	$pd->pCar->Radioon_on("off");
-	$pd->pCar->Aircon_on("on");
+	$pd->Pcar->setCentrallock_on("on");
+	$pd->Pcar->setRadio_on("on");
+	$pd->Pcar->setAircon_on("off");
 	
 	echo "<b>Settings</b><br><br>";
-	echo "Centrallock: ".$pd->pCar->getCentrallockon()."<br>";
-	echo "Radio: ".$pd->pCar->getRadioon()."<br>";
-	echo "Aircondition: ".$pd->pCar->getAirconon()."<br><br>";
-	
-	$pd->pCar->changeCondition("breaks");
-	$pd->pCar->changeKmh(40);
+	echo "Centrallock: ".$pd->Pcar->getCentrallock_on()."<br>";
+	echo "Radio: ".$pd->Pcar->getRadio_on()."<br>";
+	echo "Aircondition: ".$pd->Pcar->getAircon_on()."<br><br>";
+	$pd->Pcar->setKmh(40);
 	
 	echo "<b>Condition</b><br><br>";
 	
-	echo "doing?: ".$pd->pCar->getCondition()."<br>";
-	echo "kmh: ".$pd->pCar->getKmh()."<br><br>";
-	echo "Braking Distance: ".$pd->pCar->getBreakdis()."m<br>";
-?>
+	echo "doing?: ".$pd->Pcar->getCondition()."<br>";
+	echo "kmh: ".$pd->Pcar->getKmh()."<br><br>";
+	echo "Braking Distance: ".$pd->Pcar->getBrakdis()."m<br>";
