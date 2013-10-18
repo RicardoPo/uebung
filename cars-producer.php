@@ -210,7 +210,7 @@
 	
 	echo "<h2>Producer</h2>";
 	$pd = new Producer();
-	$pd->newProd("Fiat","Paris","Brava","green");
+	$pd->newProd("Fiat","Paris");
 	
 	echo "Company: ".$pd->getCompany()."<br>";
 	echo "Adress: ".$pd->getAdress()."<br>";
